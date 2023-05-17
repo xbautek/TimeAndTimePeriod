@@ -119,7 +119,6 @@ namespace TimePeriodUnitTests
         [DataTestMethod, TestCategory("Operators")]
         [DataRow((byte)12, (byte)12, (byte)12, 3671, (byte)13, (byte)13, (byte)23)]
         [DataRow((byte)23, (byte)58, (byte)59, 3671, (byte)1, (byte)0, (byte)10)] // 23 59 10,,,    00 00 10  01 00 10
-        //[DataRow((byte)23, (byte)13, (byte)22, (byte)23, (byte)13, (byte)12)]
         public void OperatorPlus(byte h, byte m, byte s, int interval, byte expextedh, byte expectedm, byte expecteds)
         {
             Time t = new Time(h, m, s);
@@ -130,7 +129,6 @@ namespace TimePeriodUnitTests
         [DataTestMethod, TestCategory("Operators")]
         [DataRow((byte)12, (byte)12, (byte)12, 3671, (byte)11, (byte)11, (byte)1)]
         [DataRow((byte)23, (byte)1, (byte)1, 3600 + 60 + 11, (byte)21, (byte)59, (byte)50)] // 21 59 50
-        //[DataRow((byte)23, (byte)13, (byte)22, (byte)23, (byte)13, (byte)12)]
         public void OperatorMinus(byte h, byte m, byte s, int interval, byte expextedh, byte expectedm, byte expecteds)
         {
             Time t = new Time(h, m, s);

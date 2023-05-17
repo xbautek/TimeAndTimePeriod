@@ -65,7 +65,7 @@
             </Border.RenderTransform>
         </Border>
         <TextBox HorizontalAlignment="Left" Margin="27,59,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="194" Name="logsTextBox" Height="289" BorderThickness="2"/>
+                 VerticalAlignment="Top" Width="194" Name="logsTextBox" Height="289" BorderThickness="2" IsReadOnly="True"/>
         <Label TextBlock.TextAlignment="Center"  Content="Logs
 " HorizontalAlignment="Left" Margin="104,27,0,0" VerticalAlignment="Top" Height="48" Width="40" FontWeight="Bold"/>
 

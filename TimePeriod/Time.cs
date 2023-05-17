@@ -17,6 +17,11 @@ namespace TimePeriodNamespace
 
         public Time(byte h, byte m, byte s)
         {
+            if (!IsValidByte(h) || !IsValidByte(m) || !IsValidByte(s))
+            {
+                throw new ArgumentException("One or more values are not valid byte values.");
+            }
+
             Hours = (byte)(h % 24);
             Minutes = (byte)(m % 60);
             Seconds = (byte)(s % 60);
@@ -86,7 +91,7 @@ namespace TimePeriodNamespace
 
         public bool Equals(Time other)
         {
-            if(this.Hours == other.Hours && this.Minutes == other.Minutes && this.Seconds == other.Seconds) return true;
+            if(Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds) return true;
             else return false;
         }
 
@@ -247,6 +252,11 @@ namespace TimePeriodNamespace
         public Time Plus(int interval)
         {
             return Plus(new TimePeriod(interval));
+        }
+
+        private static bool IsValidByte(byte value)
+        {
+            return typeof(byte).IsAssignableFrom(value.GetType());
         }
     }
 }
