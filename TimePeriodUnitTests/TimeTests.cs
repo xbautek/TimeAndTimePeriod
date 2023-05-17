@@ -117,6 +117,28 @@ namespace TimePeriodUnitTests
         }
 
         [DataTestMethod, TestCategory("Operators")]
+        [DataRow((byte)12, (byte)12, (byte)12, (byte)11, (byte)12, (byte)12)]
+        [DataRow((byte)23, (byte)23, (byte)23, (byte)23, (byte)23, (byte)23)]
+        public void GreaterOrEqualOperator(byte h, byte m, byte s, byte hh, byte mm, byte ss)
+        {
+            Time t = new Time(h, m, s);
+            Time t1 = new Time(hh, mm, ss);
+            Assert.AreEqual(t.CompareTo(t1), 1);
+            Assert.IsTrue(t >= t1);
+        }
+
+        [DataTestMethod, TestCategory("Operators")]
+        [DataRow((byte)12, (byte)12, (byte)12, (byte)11, (byte)12, (byte)12)]
+        [DataRow((byte)23, (byte)23, (byte)23, (byte)23, (byte)23, (byte)23)]
+        public void LessOrEqualOperator(byte h, byte m, byte s, byte hh, byte mm, byte ss)
+        {
+            Time t = new Time(h, m, s);
+            Time t1 = new Time(hh, mm, ss);
+            Assert.AreEqual(t1.CompareTo(t), -1);
+            Assert.IsFalse(t <= t1);
+        }
+
+        [DataTestMethod, TestCategory("Operators")]
         [DataRow((byte)12, (byte)12, (byte)12, 3671, (byte)13, (byte)13, (byte)23)]
         [DataRow((byte)23, (byte)58, (byte)59, 3671, (byte)1, (byte)0, (byte)10)] // 23 59 10,,,    00 00 10  01 00 10
         public void OperatorPlus(byte h, byte m, byte s, int interval, byte expextedh, byte expectedm, byte expecteds)
