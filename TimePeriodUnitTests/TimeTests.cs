@@ -195,7 +195,6 @@ namespace TimePeriodUnitTests
             Time t = new Time(h, m, s);
             Time t1 = new Time(hh, mm, ss);
             TimePeriod tp = new(t, t1);
-
             Assert.AreEqual(tp.Interval, expected);
         }
 
@@ -206,7 +205,6 @@ namespace TimePeriodUnitTests
             Time t = new Time(h, m, s);
             Time t1 = new Time(hh, mm, ss);
             TimePeriod tp = new(t, t1);
-
             Assert.AreEqual(tp.ToString(), expected);
         }
 

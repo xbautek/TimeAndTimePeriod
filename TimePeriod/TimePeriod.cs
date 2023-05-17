@@ -86,7 +86,6 @@ namespace TimePeriodNamespace
             m = (int)Math.Floor((double)((Interval % 3600) / 60));
             s = (int)((Interval % 3600) % 60);
 
-
             return $"{h}:{m}:{s}";
         }
 
