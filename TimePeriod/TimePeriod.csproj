@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>True</UseWPF>
+    <UseWindowsForms>False</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BothPoints.png" />
+    <None Remove="NoPoints.png" />
+    <None Remove="PointLeft.png" />
+    <None Remove="PointRight.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="BothPoints.png" />
+    <Resource Include="NoPoints.png" />
+    <Resource Include="PointLeft.png" />
+    <Resource Include="PointRight.png" />
+  </ItemGroup>
+
+</Project>
