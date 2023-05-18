@@ -197,7 +197,7 @@ namespace TimePeriodUnitTests
         }
 
         [DataTestMethod, TestCategory("ToString")]
-        [DataRow((byte)8, (byte)30, (byte)58, (byte)7, (byte)34, (byte)55, "23:3:57")]
+        [DataRow((byte)8, (byte)30, (byte)58, (byte)7, (byte)34, (byte)55, "23:03:57")]
         public void ToString_TestMethod(byte h, byte m, byte s, byte hh, byte mm, byte ss, string expected)
         {
             Time t = new Time(h, m, s);
