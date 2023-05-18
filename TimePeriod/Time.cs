@@ -11,10 +11,29 @@ namespace TimePeriodNamespace
 {
     public readonly struct Time : IEquatable<Time>, IComparable<Time>
     {
+        /// <summary>
+        /// Godziny.
+        /// </summary>
         public readonly byte Hours { get; }
+
+        /// <summary>
+        /// Minuty.
+        /// </summary>
         public readonly byte Minutes { get; }
+
+        /// <summary>
+        /// Sekundy.
+        /// </summary>
         public readonly byte Seconds { get; }
 
+
+        /// <summary>
+        /// Inicjalizuje nową instancję klasy <see cref="Time"/> z podanymi wartościami godzin, minut i sekund.
+        /// </summary>
+        /// <param name="h">Liczba reprezentująca godziny.</param>
+        /// <param name="m">Liczba reprezentująca minuty.</param>
+        /// <param name="s">Liczba reprezentująca sekundy.</param>
+        /// <exception cref="ArgumentException">Wyrzucane, gdy jedna lub więcej wartości nie są prawidłowymi liczbami typu byte.</exception>
         public Time(byte h, byte m, byte s)
         {
             if (!IsValidByte(h) || !IsValidByte(m) || !IsValidByte(s))
@@ -27,10 +46,24 @@ namespace TimePeriodNamespace
             Seconds = (byte)(s % 60);
         }
 
+        /// <summary>
+        /// Inicjalizuje nową instancję klasy <see cref="Time"/> z podanymi wartościami godzin i minut. Sekundy są ustawione na 0.
+        /// </summary>
+        /// <param name="h">Liczba reprezentująca godziny.</param>
+        /// <param name="m">Liczba reprezentująca minuty.</param>
         public Time(byte h, byte m): this(h,m,0) { }
 
+        /// <summary>
+        /// Inicjalizuje nową instancję klasy <see cref="Time"/> z podaną wartością godzin. Minuty i sekundy są ustawione na 0.
+        /// </summary>
+        /// <param name="h">Liczba reprezentująca godziny.</param>
         public Time(byte h) : this(h, 0, 0) { }
 
+        /// <summary>
+        /// Inicjalizuje nową instancję klasy <see cref="Time"/> na podstawie podanego ciągu znaków reprezentującego czas w formacie "hh:mm:ss".
+        /// </summary>
+        /// <param name="s">Ciąg znaków reprezentujący czas w formacie "hh:mm:ss".</param>
+        /// <exception cref="ArgumentOutOfRangeException">Wyrzucane, gdy podany format jest nieprawidłowy.</exception>
         public Time(string s)
         {
             string[] data = s.Split(':');
@@ -87,8 +120,17 @@ namespace TimePeriodNamespace
             }
         }
 
-        public override string ToString() => $"{Hours}:{Minutes}:{Seconds}";
+        /// <summary>
+        /// Zwraca reprezentację czasu jako ciąg znaków w formacie "hh:mm:ss".
+        /// </summary>
+        /// <returns>Reprezentacja czasu jako ciąg znaków w formacie "hh:mm:ss".</returns>
+        public override string ToString() => $"{Hours:00}:{Minutes:00}:{Seconds:00}";
 
+        /// <summary>
+        /// Określa, czy bieżący obiekt klasy <see cref="Time"/> jest równy podanemu obiektowi <paramref name="other"/>.
+        /// </summary>
+        /// <param name="other">Obiekt klasy <see cref="Time"/> do porównania z bieżącym obiektem.</param>
+        /// <returns>True, jeśli bieżący obiekt klasy <see cref="Time"/> jest równy podanemu obiektowi <paramref name="other"/>; w przeciwnym razie false.</returns>
         public bool Equals(Time other)
         {
             if(Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds) return true;
@@ -105,6 +147,16 @@ namespace TimePeriodNamespace
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Porównuje bieżący obiekt klasy <see cref="Time"/> z innym obiektem <paramref name="other"/> i zwraca wartość wskazującą na kolejność.
+        /// </summary>
+        /// <param name="other">Obiekt klasy <see cref="Time"/> do porównania z bieżącym obiektem.</param>
+        /// <returns>
+        /// Liczbową wartość wskazującą na wzajemną kolejność obiektów:
+        ///   - Wartość większa niż zero wskazuje, że bieżący obiekt jest większy niż <paramref name="other"/>.
+        ///   - Wartość mniejsza niż zero wskazuje, że bieżący obiekt jest mniejszy niż <paramref name="other"/>.
+        ///   - Wartość równa zero wskazuje, że obiekty są sobie równe.
+        /// </returns>
         public int CompareTo([AllowNull] Time other)
         {
 
@@ -146,36 +198,78 @@ namespace TimePeriodNamespace
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Porównuje dwa obiekty klasy <see cref="Time"/> pod względem równości.
+        /// </summary>
+        /// <param name="left">Pierwszy obiekt do porównania.</param>
+        /// <param name="right">Drugi obiekt do porównania.</param>
+        /// <returns>True, jeśli obiekty są sobie równe; w przeciwnym razie false.</returns>
         public static bool operator ==(Time left, Time right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>
+        /// Porównuje dwa obiekty klasy <see cref="Time"/> pod względem nierówności.
+        /// </summary>
+        /// <param name="left">Pierwszy obiekt do porównania.</param>
+        /// <param name="right">Drugi obiekt do porównania.</param>
+        /// <returns>True, jeśli obiekty nie są sobie równe; w przeciwnym razie false.</returns>
         public static bool operator !=(Time left, Time right)
         {
             return !left.Equals(right);
         }
 
+        /// <summary>
+        /// Porównuje dwa obiekty klasy <see cref="Time"/> pod względem większości.
+        /// </summary>
+        /// <param name="left">Pierwszy obiekt do porównania.</param>
+        /// <param name="right">Drugi obiekt do porównania.</param>
+        /// <returns>True, jeśli pierwszy obiekt jest większy niż drugi; w przeciwnym razie false.</returns>
         public static bool operator >(Time left, Time right)
         {
             return left.CompareTo(right) == 1 ? true : false;
         }
 
+        /// <summary>
+        /// Porównuje dwa obiekty klasy <see cref="Time"/> pod względem większości lub równości.
+        /// </summary>
+        /// <param name="left">Pierwszy obiekt do porównania.</param>
+        /// <param name="right">Drugi obiekt do porównania.</param>
+        /// <returns>True, jeśli pierwszy obiekt jest większy lub równy drugiemu; w przeciwnym razie false.</returns>
         public static bool operator >=(Time left, Time right)
         {
             return left.CompareTo(right) == 1 || left.CompareTo(right) == 0 ? true : false;
         }
 
+        /// <summary>
+        /// Porównuje dwa obiekty klasy <see cref="Time"/> pod względem mniejszości.
+        /// </summary>
+        /// <param name="left">Pierwszy obiekt do porównania.</param>
+        /// <param name="right">Drugi obiekt do porównania.</param>
+        /// <returns>True, jeśli pierwszy obiekt jest mniejszy niż drugi; w przeciwnym razie false.</returns>
         public static bool operator <(Time left, Time right)
         {
             return left.CompareTo(right) == -1 ? true : false;
         }
 
+        /// <summary>
+        /// Porównuje dwa obiekty klasy <see cref="Time"/> pod względem mniejszości lub równości.
+        /// </summary>
+        /// <param name="left">Pierwszy obiekt do porównania.</param>
+        /// <param name="right">Drugi obiekt do porównania.</param>
+        /// <returns>True, jeśli pierwszy obiekt jest mniejszy lub równy drugiemu; w przeciwnym razie false.</returns>
         public static bool operator <=(Time left, Time right)
         {
             return left.CompareTo(right) == -1 || left.CompareTo(right) == 0 ? true : false;
         }
 
+        /// <summary>
+        /// Dodaje obiekt klasy <see cref="Time"/> i obiekt klasy <see cref="TimePeriod"/>.
+        /// </summary>
+        /// <param name="left">Obiekt <see cref="Time"/> do którego będzie dodawane.</param>
+        /// <param name="right">Obiekt <see cref="TimePeriod"/> do dodania.</param>
+        /// <returns>Nowy obiekt <see cref="Time"/> będący sumą <paramref name="left"/> i <paramref name="right"/>.</returns>
         public static Time operator +(Time left, TimePeriod right)
         {
             return left.Plus(right);
@@ -185,6 +279,12 @@ namespace TimePeriodNamespace
             return left.Plus(right);
         }
 
+        /// <summary>
+        /// Odejmuje od obiektu klasy <see cref="Time"/> obiekt klasy <see cref="TimePeriod"/>.
+        /// </summary>
+        /// <param name="left">Obiekt <see cref="Time"/> od którego będzie odejmowane.</param>
+        /// <param name="right">Obiekt <see cref="TimePeriod"/> do odjęcia.</param>
+        /// <returns>Nowy obiekt <see cref="Time"/> będący różnicą między <paramref name="left"/> a <paramref name="right"/>.</returns>
         public static Time operator -(Time left, TimePeriod right)
         {
             return left.Minus(right);
@@ -195,6 +295,11 @@ namespace TimePeriodNamespace
             return left.Minus(right);
         }
 
+        /// <summary>
+        /// Dodaje obiekt klasy <see cref="Time"/> i obiekt klasy <see cref="TimePeriod"/>.
+        /// </summary>
+        /// <param name="t">Obiekt <see cref="TimePeriod"/>, który zostanie dodany do obiektu typu <see cref="Time"/></param>
+        /// <returns>Nowy obiekt <see cref="Time"/> będący sumą <see cref="Time"/> i <see cref="TimePeriod"/>.</returns>
         public Time Plus(TimePeriod t)
         {
             byte hours = Hours, minutes = Minutes, seconds = Seconds;
@@ -219,6 +324,11 @@ namespace TimePeriodNamespace
             return new Time(hours,minutes,seconds);
         }
 
+        /// <summary>
+        /// Odejmuje obiekt klasy <see cref="TimePeriod"/> od obiektu klasy <see cref="Time"/>.
+        /// </summary>
+        /// <param name="t">Obiekt <see cref="TimePeriod"/>, który zostanie odjęty do obiektu typu <see cref="Time"/></param>
+        /// <returns>Nowy obiekt <see cref="Time"/> będący różnicą <see cref="Time"/> i <see cref="TimePeriod"/>.</returns>
         public Time Minus(TimePeriod t)
         {
             short hours = Hours, minutes = Minutes, seconds = Seconds;
@@ -244,12 +354,12 @@ namespace TimePeriodNamespace
             return new Time((byte)hours,(byte)minutes,(byte)seconds);
         }
 
-        public Time Minus(int interval)
+        private Time Minus(int interval)
         {
             return Minus(new TimePeriod(interval));
         }
 
-        public Time Plus(int interval)
+        private Time Plus(int interval)
         {
             return Plus(new TimePeriod(interval));
         }

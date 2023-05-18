@@ -123,19 +123,17 @@ namespace TimePeriodUnitTests
         {
             Time t = new Time(h, m, s);
             Time t1 = new Time(hh, mm, ss);
-            Assert.AreEqual(t.CompareTo(t1), 1);
             Assert.IsTrue(t >= t1);
         }
 
         [DataTestMethod, TestCategory("Operators")]
-        [DataRow((byte)12, (byte)12, (byte)12, (byte)11, (byte)12, (byte)12)]
+        [DataRow((byte)12, (byte)12, (byte)12, (byte)12, (byte)13, (byte)12)]
         [DataRow((byte)23, (byte)23, (byte)23, (byte)23, (byte)23, (byte)23)]
         public void LessOrEqualOperator(byte h, byte m, byte s, byte hh, byte mm, byte ss)
         {
             Time t = new Time(h, m, s);
-            Time t1 = new Time(hh, mm, ss);
-            Assert.AreEqual(t1.CompareTo(t), -1);
-            Assert.IsFalse(t <= t1);
+            Time t1 = new Time(hh, mm, ss);           
+            Assert.IsTrue(t <= t1);
         }
 
         [DataTestMethod, TestCategory("Operators")]
