@@ -215,6 +215,11 @@ namespace TimePeriodNamespace
             return new TimePeriod(left.Interval + right.Interval);
         }
 
+      //  public TimePeriod Plus(TimePeriod other)
+      //  {
+      //      return new TimePeriod(Interval + other.Interval);
+      //  }
+
         /// <summary>
         /// Odejmuje dwa obiekty typu <see cref="TimePeriod"/> i zwraca wynik jako nowy obiekt <see cref="TimePeriod"/>.
         /// </summary>
@@ -241,7 +246,6 @@ namespace TimePeriodNamespace
         /// <param name="right">Drugi obiekt typu <see cref="TimePeriod"/>.</param>
         /// <returns>Nowy obiekt <see cref="TimePeriod"/> reprezentujący różnicę między dwoma obiektami.</returns>
         public static TimePeriod operator -(TimePeriod left, TimePeriod right) => Minus(left, right);
-
 
         private static bool IsValidLong(long value)
         {
