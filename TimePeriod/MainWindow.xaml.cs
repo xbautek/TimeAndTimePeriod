@@ -144,5 +144,65 @@ namespace TimePeriodNamespace
         {
             logsTextBox.Text = string.Empty;
         }
+
+        private void Greater_button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(t1Result.Text) || string.IsNullOrEmpty(t2Result.Text))
+                    throw new ArgumentNullException("Field t1:Time or t2:Time is null or empty.");
+                else
+                {
+                    Time ss = new(t1Result.Text);
+                    Time dd = new(t2Result.Text);
+                    
+                    logsTextBox.Text += (ss > dd) + Environment.NewLine;
+                }
+            }
+            catch (Exception ex)
+            {
+                logsTextBox.Text += ex.Message + Environment.NewLine;
+            }
+        }
+
+        private void Less_button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(t1Result.Text) || string.IsNullOrEmpty(t2Result.Text))
+                    throw new ArgumentNullException("Field t1:Time or t2:Time is null or empty.");
+                else
+                {
+                    Time ss = new(t1Result.Text);
+                    Time dd = new(t2Result.Text);
+
+                    logsTextBox.Text += (ss < dd) + Environment.NewLine;
+                }
+            }
+            catch (Exception ex)
+            {
+                logsTextBox.Text += ex.Message + Environment.NewLine;
+            }
+        }
+
+        private void Equal_button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(t1Result.Text) || string.IsNullOrEmpty(t2Result.Text))
+                    throw new ArgumentNullException("Field t1:Time or t2:Time is null or empty.");
+                else
+                {
+                    Time ss = new(t1Result.Text);
+                    Time dd = new(t2Result.Text);
+
+                    logsTextBox.Text += (ss == dd) + Environment.NewLine;
+                }
+            }
+            catch (Exception ex)
+            {
+                logsTextBox.Text += ex.Message + Environment.NewLine;
+            }
+        }
     }
 }

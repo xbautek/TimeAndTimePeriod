@@ -80,6 +80,9 @@
         <Button Content="Clear logs" HorizontalAlignment="Left" Margin="27,353,0,0" VerticalAlignment="Top" Name="ClearConsole_button" Click="ClearConsole_button_Click" Height="36" Width="193" RenderTransformOrigin="-0.066,0.889"/>
         <Button Content="Clear everything" HorizontalAlignment="Left" Margin="27,394,0,0" VerticalAlignment="Top" x:Name="Clear_button" Click="Clear_button_Click" Height="36" Width="193" RenderTransformOrigin="-0.066,0.889"/>
         <Label Content="Timeline" HorizontalAlignment="Left" Margin="387,239,0,0" VerticalAlignment="Top"/>
+        <Button Content=">" HorizontalAlignment="Left" Margin="420,109,0,0" VerticalAlignment="Top" x:Name="Greater_button" Click="Greater_button_Click" RenderTransformOrigin="-0.09,0.458" Width="23"/>
+        <Button Content="&lt;" HorizontalAlignment="Left" Margin="420,159,0,0" VerticalAlignment="Top" x:Name="Less_button" Click="Less_button_Click" RenderTransformOrigin="-0.09,0.458" Width="23"/>
+        <Button Content="=" HorizontalAlignment="Left" Margin="420,134,0,0" VerticalAlignment="Top" x:Name="Equal_button" Click="Equal_button_Click" RenderTransformOrigin="-0.09,0.458" Width="23"/>
 
     </Grid>
 </Window>
